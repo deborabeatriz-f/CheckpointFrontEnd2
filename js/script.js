@@ -13,7 +13,7 @@ btn.addEventListener("click", (event) => {
 
   let listaTarefas = document.createElement("li");
 
-  listaTarefas.innerText = `Tarefa: ${tarefa.value}. Criação da tarefa: ${dataCriacao}. Previsão de finalização da tarefa: ${data}.`;
+  listaTarefas.innerText = `Tarefa: ${tarefa.value}. Criação da tarefa: ${dataCriacao.value}. Previsão de finalização da tarefa: ${data.value}.`;
 
   lista.appendChild(listaTarefas);
 });
