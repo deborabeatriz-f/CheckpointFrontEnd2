@@ -21,7 +21,7 @@ btn.addEventListener("click", (event) => {
   } else {
 
     let listaTarefas = document.createElement("li");
-
+    //mudei de innerText pra innerHTML
     listaTarefas.innerHTML = `Tarefa: ${tarefa.value}. Criação da tarefa: ${dataCriacao.value}. Previsão de finalização da tarefa: ${data.value}. <i class="fas fa-trash"></i>`;
 
     lista.appendChild(listaTarefas);
