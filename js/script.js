@@ -22,7 +22,10 @@ function renderizarTarefas() {
       (tarefa) => `
         <li>
           <div class="card" data-id="${tarefa.id}">
-            <p>Tarefa: ${tarefa.titulo}</p>
+            <input type="checkbox" id="tarefa${tarefa.id}" ${tarefa.completada ? 'checked' : ''} />
+            <label for="tarefa${tarefa.id}">
+              Tarefa: ${tarefa.titulo}
+            </label>
             <p>Descrição: ${tarefa.descricao}</p>
             <p>Data de Criação: ${tarefa.dataCriacao}</p>
             <p>Data Limite: ${tarefa.dataLimite}</p>
@@ -48,7 +51,7 @@ function adicionarTarefa(event) {
     dataCriacao: dataCriacao.value,
     dataLimite: data.value,
     descricao: desc.value,
-    completado: false,
+    completada: false,
   };
 
   estado.tarefas.push(novaTarefa);
@@ -56,7 +59,7 @@ function adicionarTarefa(event) {
   renderizarTarefas();
 }
 
-// Event Handler: Clique no botão de excluir
+// Event handler: Clique no botão de excluir
 function removerTarefa(event) {
   if (!event.target.closest('.remover-tarefa')) return;
 
@@ -68,6 +71,16 @@ function removerTarefa(event) {
 
   estado.tarefas.splice(tarefaIndex);
   renderizarTarefas();
+}
+
+// Event handler: Marcar / Desmarcar tarefa
+function atualizarTarefa(event) {
+  if (!event.target.matches('input[type="checkbox"]')) return;
+
+  const tarefaId = event.target.closest('.card').dataset.id;
+  const tarefaSelecionada = estado.tarefas.find((tarefa) => tarefa.id == tarefaId);
+
+  tarefaSelecionada.completada = event.target.checked;
 }
 
 // Função utilitária: Limpa os campos do formulário
@@ -96,3 +109,4 @@ function validarCampos() {
 document.addEventListener('DOMContentLoaded', renderizarTarefas);
 formulario.addEventListener('submit', adicionarTarefa);
 lista.addEventListener('click', removerTarefa);
+lista.addEventListener('change', atualizarTarefa);
