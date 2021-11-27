@@ -69,7 +69,9 @@ function removerTarefa(event) {
   const tarefaId = event.target.closest('.card').dataset.id;
   const tarefaIndex = estado.tarefas.findIndex((tarefa) => tarefa.id == tarefaId);
 
-  estado.tarefas.splice(tarefaIndex);
+  console.log(tarefaIndex);
+
+  estado.tarefas.splice(tarefaIndex, 1);
   renderizarTarefas();
 }
 
