@@ -17,21 +17,28 @@ function renderizarTarefas() {
   if (estado.tarefas.length === 0) {
     lista.innerHTML = '<p>Não há tarefas</p>'
   }
-  lista.innerHTML = estado.tarefas.map(
-    tarefa => `
-      <li>
-        <div class="card" data-id="${tarefa.id}">
-          <p>Tarefa: ${tarefa.titulo}</p>
-          <p>Descrição: ${tarefa.descricao}</p>
-          <p>Data de Criação: ${tarefa.dataCriacao}</p>
-          <p>Data Limite: ${tarefa.dataLimite}</p>
-          <button class="remover-tarefa">
-            <i class="fas fa-trash"></i>
-          </button>
-        </div>
-      </li>
-    `
-  )
+  lista.innerHTML = estado.tarefas
+    .map(
+      tarefa => `
+        <li>
+          <div class="card" data-id="${tarefa.id}">
+            <input type="checkbox" id="tarefa${tarefa.id}" ${
+        tarefa.completada ? 'checked' : ''
+      } />
+            <label for="tarefa${tarefa.id}">
+              Tarefa: ${tarefa.titulo}
+            </label>
+            <p>Descrição: ${tarefa.descricao}</p>
+            <p>Data de Criação: ${tarefa.dataCriacao}</p>
+            <p>Data Limite: ${tarefa.dataLimite}</p>
+            <button class="remover-tarefa">
+              <i class="fas fa-trash"></i>
+            </button>
+          </div>
+        </li>
+      `
+    )
+    .join('')
 }
 
 // Event handler: Envio do formulário
@@ -46,7 +53,7 @@ function adicionarTarefa(event) {
     dataCriacao: dataCriacao.value,
     dataLimite: data.value,
     descricao: desc.value,
-    completado: false
+    completada: false
   }
 
   estado.tarefas.push(novaTarefa)
@@ -54,6 +61,7 @@ function adicionarTarefa(event) {
   renderizarTarefas()
 }
 
+// Event handler: Clique no botão de excluir
 function removerTarefa(event) {
   if (!event.target.closest('.remover-tarefa')) return
 
@@ -63,8 +71,20 @@ function removerTarefa(event) {
   const tarefaId = event.target.closest('.card').dataset.id
   const tarefaIndex = estado.tarefas.findIndex(tarefa => tarefa.id == tarefaId)
 
-  estado.tarefas.splice(tarefaIndex)
+  console.log(tarefaIndex)
+
+  estado.tarefas.splice(tarefaIndex, 1)
   renderizarTarefas()
+}
+
+// Event handler: Marcar / Desmarcar tarefa
+function atualizarTarefa(event) {
+  if (!event.target.matches('input[type="checkbox"]')) return
+
+  const tarefaId = event.target.closest('.card').dataset.id
+  const tarefaSelecionada = estado.tarefas.find(tarefa => tarefa.id == tarefaId)
+
+  tarefaSelecionada.completada = event.target.checked
 }
 
 // Função utilitária: Limpa os campos do formulário
@@ -93,6 +113,7 @@ function validarCampos() {
 document.addEventListener('DOMContentLoaded', renderizarTarefas)
 formulario.addEventListener('submit', adicionarTarefa)
 lista.addEventListener('click', removerTarefa)
+lista.addEventListener('change', atualizarTarefa)
 
 // Temas
 let branco = document.getElementById('branco')
