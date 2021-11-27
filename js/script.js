@@ -16,6 +16,7 @@ const estado = {
 function renderizarTarefas() {
   if (estado.tarefas.length === 0) {
     lista.innerHTML = '<p>Não há tarefas</p>'
+    return
   }
   lista.innerHTML = estado.tarefas
     .map(
