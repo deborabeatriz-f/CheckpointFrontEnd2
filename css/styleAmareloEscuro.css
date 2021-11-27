@@ -37,3 +37,7 @@ body {
 #dark {
   background: #11100ed7;
 }
+
+.card input[type='checkbox']:checked + label {
+  text-decoration: line-through;
+}
