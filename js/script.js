@@ -20,11 +20,14 @@ function renderizarTarefas() {
   lista.innerHTML = estado.tarefas.map(
     (tarefa) => `
       <li>
-        <div class="card">
+        <div class="card" data-id="${tarefa.id}">
           <p>Tarefa: ${tarefa.titulo}</p>
+          <p>Descrição: ${tarefa.descricao}</p>
           <p>Data de Criação: ${tarefa.dataCriacao}</p>
           <p>Data Limite: ${tarefa.dataLimite}</p>
-          <i class="fas fa-trash"></i>
+          <button class="remover-tarefa">
+            <i class="fas fa-trash"></i>
+          </button>
         </div>
       </li>
     `
@@ -34,6 +37,8 @@ function renderizarTarefas() {
 // Event handler: Envio do formulário
 function adicionarTarefa(event) {
   event.preventDefault();
+
+  if (!validarCampos()) return;
 
   const novaTarefa = {
     id: Date.now(),
@@ -45,8 +50,20 @@ function adicionarTarefa(event) {
   };
 
   estado.tarefas.push(novaTarefa);
-
   limparFormulario();
+  renderizarTarefas();
+}
+
+function removerTarefa(event) {
+  if (!event.target.closest('.remover-tarefa')) return;
+
+  const confirmarExclusao = confirm('Deseja mesmo excluir a tarefa?');
+  if (!confirmarExclusao) return;
+
+  const tarefaId = event.target.closest('.card').dataset.id;
+  const tarefaIndex = estado.tarefas.findIndex((tarefa) => tarefa.id == tarefaId);
+
+  estado.tarefas.splice(tarefaIndex);
   renderizarTarefas();
 }
 
@@ -60,14 +77,19 @@ function limparFormulario() {
 // Função utilitária: Valida os campos do formulário
 function validarCampos() {
   if (desc.value.length < 10) {
-    return alert('A descrição deve ter no mínimo 10 caracteres');
+    alert('A descrição deve ter no mínimo 10 caracteres');
+    return false;
   } else if (tarefa.value.length == 0) {
-    return alert("O campo 'tarefa' não pode ficar vazio.");
+    alert("O campo 'tarefa' não pode ficar vazio.");
+    return false;
   } else if (data.value == '') {
-    return alert('Favor, preencher a data');
+    alert('Favor, preencher a data');
+    return false;
   }
+  return true;
 }
 
 // Event Listeners
 document.addEventListener('DOMContentLoaded', renderizarTarefas);
 formulario.addEventListener('submit', adicionarTarefa);
+lista.addEventListener('click', removerTarefa);
