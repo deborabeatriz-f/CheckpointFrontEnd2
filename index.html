@@ -1,44 +1,66 @@
 <!DOCTYPE html>
 <html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <script
+      src="https://kit.fontawesome.com/59dc12f4d8.js"
+      crossorigin="anonymous"
+    ></script>
+    <link rel="stylesheet" href="./css/styleBranco.css" />
+    <title>To Do</title>
+  </head>
 
-<head>
-  <meta charset="UTF-8" />
-  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <script src="https://kit.fontawesome.com/59dc12f4d8.js" crossorigin="anonymous"></script>
-  <link rel="stylesheet" href="./css/style.css" />
-  <title>To Do</title>
-</head>
-
-<body>
-  <header>
-    <h1>To do List</h1>
-  </header>
-
-  <form class="nova-tarefa">
-    <input id="tarefa" type="text" placeholder="Tarefa:" />
-    
-    <div class="row" style="display: flex; flex-direction: column;">
-      <!--mudança na formatação. Para remover, só tirar os <labels> e as divs-->
-      
-        <div class="datas" style="display: flex; flex-direction: column; width: 20%; gap: 15px; margin: 10px 0px;">
-        <label for="dataCriacao">Data de criação: </label>
-        <input type="date" name="dataCriacao" id="dataCriacao" disabled />
-        <label for="data">Data prevista de término: </label>
-        <input type="date" name="data" id="data" />
-        <label for="desc">Descrição da tarefa</label>
-        <textarea name="desc" id="desc" cols="30" rows="5" placeholder="Insira uma descrição..."></textarea>
+  <body>
+    <header>
+      <div>
+        <h1>To do List</h1>
       </div>
-    </div>
-    
+      <div>
+        <button id="branco" class="btnTemas"></button>
+        <button id="amareloEscuro" class="btnTemas"></button>
+        <button id="azulTurquesa" class="btnTemas"></button>
+        <button id="dark" class="btnTemas"></button>
+      </div>
+    </header>
 
-    <button type="submit" id="adicionar">Adicionar</button>
-  </form>
-  
+    <form class="nova-tarefa">
+      <input id="tarefa" type="text" placeholder="Tarefa:" />
 
-  <ul></ul>
+      <div class="row" style="display: flex; flex-direction: column">
+        <!--mudança na formatação. Para remover, só tirar os <labels> e as divs-->
 
-  <script src="./js/script.js"></script>
-</body>
+        <div
+          class="datas"
+          style="
+            display: flex;
+            flex-direction: column;
+            width: 20%;
+            gap: 15px;
+            margin: 10px 0px;
+          "
+        >
+          <label for="dataCriacao">Data de criação: </label>
+          <input type="date" name="dataCriacao" id="dataCriacao" disabled />
+          <label for="data">Data prevista de término: </label>
+          <input type="date" name="data" id="data" />
+          <label for="desc">Descrição da tarefa</label>
+          <textarea
+            name="desc"
+            id="desc"
+            cols="30"
+            rows="5"
+            placeholder="Insira uma descrição..."
+          ></textarea>
+        </div>
+      </div>
 
+      <button type="submit" id="adicionar">Adicionar</button>
+    </form>
+
+    <ul></ul>
+
+    <script src="./js/script.js"></script>
+  </body>
 </html>

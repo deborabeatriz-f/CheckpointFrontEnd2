@@ -1,0 +1,39 @@
+:root {
+  --main-color: #2f767c;
+  --sub-color: #6c9599;
+  --text-color: #1a2020;
+}
+
+header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background: var(--main-color);
+}
+
+body {
+  background: var(--sub-color);
+}
+
+.btnTemas {
+  border-radius: 50%;
+  width: 1rem;
+  height: 1rem;
+  border: none;
+}
+
+#branco {
+  background: #c8c0c0;
+}
+
+#amareloEscuro {
+  background: #6a5d14;
+}
+
+#azulTurquesa {
+  background: #2f767c;
+}
+
+#dark {
+  background: #11100ed7;
+}
