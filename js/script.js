@@ -17,21 +17,23 @@ function renderizarTarefas() {
   if (estado.tarefas.length === 0) {
     lista.innerHTML = '<p>Não há tarefas</p>';
   }
-  lista.innerHTML = estado.tarefas.map(
-    (tarefa) => `
-      <li>
-        <div class="card" data-id="${tarefa.id}">
-          <p>Tarefa: ${tarefa.titulo}</p>
-          <p>Descrição: ${tarefa.descricao}</p>
-          <p>Data de Criação: ${tarefa.dataCriacao}</p>
-          <p>Data Limite: ${tarefa.dataLimite}</p>
-          <button class="remover-tarefa">
-            <i class="fas fa-trash"></i>
-          </button>
-        </div>
-      </li>
-    `
-  );
+  lista.innerHTML = estado.tarefas
+    .map(
+      (tarefa) => `
+        <li>
+          <div class="card" data-id="${tarefa.id}">
+            <p>Tarefa: ${tarefa.titulo}</p>
+            <p>Descrição: ${tarefa.descricao}</p>
+            <p>Data de Criação: ${tarefa.dataCriacao}</p>
+            <p>Data Limite: ${tarefa.dataLimite}</p>
+            <button class="remover-tarefa">
+              <i class="fas fa-trash"></i>
+            </button>
+          </div>
+        </li>
+      `
+    )
+    .join('');
 }
 
 // Event handler: Envio do formulário
@@ -54,6 +56,7 @@ function adicionarTarefa(event) {
   renderizarTarefas();
 }
 
+// Event Handler: Clique no botão de excluir
 function removerTarefa(event) {
   if (!event.target.closest('.remover-tarefa')) return;
 
