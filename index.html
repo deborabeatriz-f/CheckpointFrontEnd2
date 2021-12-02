@@ -5,22 +5,30 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <link rel="stylesheet" href="./css/style.css" />
-    <title>To Do</title>
+    <title>To Do App</title>
   </head>
   <body>
     <header>
-      <h1>To do List</h1>
+      <h1>To-Do App</h1>
     </header>
 
-    <form class="nova-tarefa">
-      <input id="tarefa" type="text" placeholder="Tarefa:" />
-      <input type="date" name="dataCriacao" id="dataCriacao" disabled />
-      <input type="date" name="data" id="data" />
-
-      <button id="adicionar">Adicionar</button>
-    </form>
-
-    <ul></ul>
+    <div class="container">
+      <div id=form>
+        <h2>To-Do Input</h2>
+        <form class="nova-tarefa">
+          <input id="tarefa" type="text" placeholder="Tarefa:" />
+          <input type="date" name="dataCriacao" id="dataCriacao" disabled />
+          <input type="date" name="data" id="data" />
+    
+          <button id="adicionar">Adicionar</button>
+        </form>
+      </div>
+  
+      <div id="list">
+        <h2>To-Do List</h2>
+        <ul></ul>
+      </div>
+    </div>
 
     <script src="./js/script.js"></script>
   </body>
