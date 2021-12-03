@@ -51,7 +51,11 @@ function adicionarTarefa(event) {
   if (!validarCampos()) return;
 
   let dateTimeNow = new Date();
-  let timeStrNow = dateTimeNow.getHours() + ':' + dateTimeNow.getMinutes() + ':' + dateTimeNow.getSeconds();
+  let hourNow = ('0'+dateTimeNow.getHours()).slice(-2);
+  let minuteNow = ('0'+dateTimeNow.getMinutes()).slice(-2);
+  let secondNow = ('0'+dateTimeNow.getSeconds()).slice(-2);
+
+  let timeStrNow = hourNow + ':' + minuteNow + ':' + secondNow;
 
   let dataCriacaoNow = new Date(dataCriacao.value + 'T' + timeStrNow);
   let dataUTCNow = new Date(data.value + 'T' + timeStrNow);
