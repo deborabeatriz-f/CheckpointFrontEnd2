@@ -1,7 +1,7 @@
 :root {
-  --main-color: #e5e2e2;
-  --sub-color: #d1b9b9;
-  --text-color: #866b6b;
+  --main-color: #2f767c;
+  --sub-color: #6c9599;
+  --text-color: #1a2020;
 }
 
 header {
@@ -38,17 +38,6 @@ body {
   background: #11100ed7;
 }
 
-.todo-list {
-  list-style: none;
-  display: flex;
-  flex-direction: column;
-  gap: 32px;
-}
-
-.todo-title .completed {
+.card input[type='checkbox']:checked + label {
   text-decoration: line-through;
-}
-
-.todo-title .uncompleted {
-  font-weight: 700;
 }

@@ -1,7 +1,7 @@
 :root {
-  --main-color: #e5e2e2;
-  --sub-color: #d1b9b9;
-  --text-color: #866b6b;
+  --main-color: #11100ed7;
+  --sub-color: #24221fd7;
+  --text-color: #f3f2f0d7;
 }
 
 header {
@@ -23,7 +23,7 @@ body {
 }
 
 #branco {
-  background: #c8c0c0;
+  background: #e5e2e2;
 }
 
 #amareloEscuro {
@@ -38,17 +38,6 @@ body {
   background: #11100ed7;
 }
 
-.todo-list {
-  list-style: none;
-  display: flex;
-  flex-direction: column;
-  gap: 32px;
-}
-
-.todo-title .completed {
+.card input[type='checkbox']:checked + label {
   text-decoration: line-through;
-}
-
-.todo-title .uncompleted {
-  font-weight: 700;
 }

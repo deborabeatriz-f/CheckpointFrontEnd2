@@ -38,17 +38,6 @@ body {
   background: #11100ed7;
 }
 
-.todo-list {
-  list-style: none;
-  display: flex;
-  flex-direction: column;
-  gap: 32px;
-}
-
-.todo-title .completed {
+.card input[type='checkbox']:checked + label {
   text-decoration: line-through;
-}
-
-.todo-title .uncompleted {
-  font-weight: 700;
 }
