@@ -19,8 +19,11 @@ function renderizarTarefas() {
     return;
   }
   lista.innerHTML = estado.tarefas
-    .map(
-      (tarefa) => `
+    .map((tarefa) => {
+      const dataCriacao = new Date(tarefa.dataCriacao).toLocaleDateString("BR");
+      const dataLimite = new Date(tarefa.dataLimite).toLocaleDateString("BR");
+
+      return `
         <li>
           <div class="card" data-id="${tarefa.id}">
             <input type="checkbox" id="tarefa${tarefa.id}" ${
@@ -30,15 +33,15 @@ function renderizarTarefas() {
               Tarefa: ${tarefa.titulo}
             </label>
             <p>Descrição: ${tarefa.descricao}</p>
-            <p>Data de Criação: ${tarefa.dataCriacao}</p>
-            <p>Data Limite: ${tarefa.dataLimite}</p>
+            <p>Data de Criação: ${dataCriacao}</p>
+            <p>Data Limite: ${dataLimite}</p>
             <button class="remover-tarefa">
               <i class="fas fa-trash"></i>
             </button>
           </div>
         </li>
-      `
-    )
+      `;
+    })
     .join("");
 }
 
