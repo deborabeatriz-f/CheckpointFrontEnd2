@@ -50,11 +50,17 @@ function adicionarTarefa(event) {
 
   if (!validarCampos()) return;
 
+  let dateTimeNow = new Date();
+  let timeStrNow = dateTimeNow.getHours() + ':' + dateTimeNow.getMinutes() + ':' + dateTimeNow.getSeconds();
+
+  let dataCriacaoNow = new Date(dataCriacao.value + 'T' + timeStrNow);
+  let dataUTCNow = new Date(data.value + 'T' + timeStrNow);
+
   const novaTarefa = {
     id: Date.now(),
     titulo: tarefa.value,
-    dataCriacao: dataCriacao.valueAsDate,
-    dataLimite: data.valueAsDate,
+    dataCriacao: dataCriacaoNow,
+    dataLimite: dataUTCNow,
     descricao: desc.value,
     completada: false,
   };
