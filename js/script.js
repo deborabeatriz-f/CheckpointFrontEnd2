@@ -1,30 +1,30 @@
-let formulario = document.querySelector('.nova-tarefa')
-let btn = document.querySelector('#adicionar')
-let tarefa = document.getElementById('tarefa')
-let dataCriacao = document.getElementById('dataCriacao')
-let data = document.getElementById('data')
-let lista = document.querySelector('ul')
-let desc = document.getElementById('desc')
-dataCriacao.value = new Date().toISOString().slice(0, 10)
+let formulario = document.querySelector(".nova-tarefa");
+let btn = document.querySelector("#adicionar");
+let tarefa = document.getElementById("tarefa");
+let dataCriacao = document.getElementById("dataCriacao");
+let data = document.getElementById("data");
+let lista = document.querySelector("ul");
+let desc = document.getElementById("desc");
+dataCriacao.value = new Date().toISOString().slice(0, 10);
 
 // Dados da aplicação
 const estado = {
-  tarefas: []
-}
+  tarefas: [],
+};
 
 // Função que será chamada sempre que uma tarefa for adicionada ou removida do estado
 function renderizarTarefas() {
   if (estado.tarefas.length === 0) {
-    lista.innerHTML = '<p>Não há tarefas</p>'
-    return
+    lista.innerHTML = "<p>Não há tarefas</p>";
+    return;
   }
   lista.innerHTML = estado.tarefas
     .map(
-      tarefa => `
+      (tarefa) => `
         <li>
           <div class="card" data-id="${tarefa.id}">
             <input type="checkbox" id="tarefa${tarefa.id}" ${
-        tarefa.completada ? 'checked' : ''
+        tarefa.completada ? "checked" : ""
       } />
             <label for="tarefa${tarefa.id}">
               Tarefa: ${tarefa.titulo}
@@ -39,14 +39,14 @@ function renderizarTarefas() {
         </li>
       `
     )
-    .join('')
+    .join("");
 }
 
 // Event handler: Envio do formulário
 function adicionarTarefa(event) {
-  event.preventDefault()
+  event.preventDefault();
 
-  if (!validarCampos()) return
+  if (!validarCampos()) return;
 
   const novaTarefa = {
     id: Date.now(),
@@ -54,90 +54,94 @@ function adicionarTarefa(event) {
     dataCriacao: dataCriacao.value,
     dataLimite: data.value,
     descricao: desc.value,
-    completada: false
-  }
+    completada: false,
+  };
 
-  estado.tarefas.push(novaTarefa)
-  limparFormulario()
-  renderizarTarefas()
+  estado.tarefas.push(novaTarefa);
+  limparFormulario();
+  renderizarTarefas();
 }
 
 // Event handler: Clique no botão de excluir
 function removerTarefa(event) {
-  if (!event.target.closest('.remover-tarefa')) return
+  if (!event.target.closest(".remover-tarefa")) return;
 
-  const confirmarExclusao = confirm('Deseja mesmo excluir a tarefa?')
-  if (!confirmarExclusao) return
+  const confirmarExclusao = confirm("Deseja mesmo excluir a tarefa?");
+  if (!confirmarExclusao) return;
 
-  const tarefaId = event.target.closest('.card').dataset.id
-  const tarefaIndex = estado.tarefas.findIndex(tarefa => tarefa.id == tarefaId)
+  const tarefaId = event.target.closest(".card").dataset.id;
+  const tarefaIndex = estado.tarefas.findIndex(
+    (tarefa) => tarefa.id == tarefaId
+  );
 
-  console.log(tarefaIndex)
+  console.log(tarefaIndex);
 
-  estado.tarefas.splice(tarefaIndex, 1)
-  renderizarTarefas()
+  estado.tarefas.splice(tarefaIndex, 1);
+  renderizarTarefas();
 }
 
 // Event handler: Marcar / Desmarcar tarefa
 function atualizarTarefa(event) {
-  if (!event.target.matches('input[type="checkbox"]')) return
+  if (!event.target.matches('input[type="checkbox"]')) return;
 
-  const tarefaId = event.target.closest('.card').dataset.id
-  const tarefaSelecionada = estado.tarefas.find(tarefa => tarefa.id == tarefaId)
+  const tarefaId = event.target.closest(".card").dataset.id;
+  const tarefaSelecionada = estado.tarefas.find(
+    (tarefa) => tarefa.id == tarefaId
+  );
 
-  tarefaSelecionada.completada = event.target.checked
+  tarefaSelecionada.completada = event.target.checked;
 }
 
 // Função utilitária: Limpa os campos do formulário
 function limparFormulario() {
-  tarefa.value = ''
-  data.value = ''
-  desc.value = ''
+  tarefa.value = "";
+  data.value = "";
+  desc.value = "";
 }
 
 // Função utilitária: Valida os campos do formulário
 function validarCampos() {
   if (desc.value.length < 10) {
-    alert('A descrição deve ter no mínimo 10 caracteres')
-    return false
+    alert("A descrição deve ter no mínimo 10 caracteres");
+    return false;
   } else if (tarefa.value.length == 0) {
-    alert("O campo 'tarefa' não pode ficar vazio.")
-    return false
-  } else if (data.value == '') {
-    alert('Favor, preencher a data')
-    return false
+    alert("O campo 'tarefa' não pode ficar vazio.");
+    return false;
+  } else if (data.value == "") {
+    alert("Favor, preencher a data");
+    return false;
   }
-  return true
+  return true;
 }
 
 // Event Listeners
-document.addEventListener('DOMContentLoaded', renderizarTarefas)
-formulario.addEventListener('submit', adicionarTarefa)
-lista.addEventListener('click', removerTarefa)
-lista.addEventListener('change', atualizarTarefa)
+document.addEventListener("DOMContentLoaded", renderizarTarefas);
+formulario.addEventListener("submit", adicionarTarefa);
+lista.addEventListener("click", removerTarefa);
+lista.addEventListener("change", atualizarTarefa);
 
 // Temas
-let branco = document.getElementById('branco')
-let amareloEscuro = document.getElementById('amareloEscuro')
-let azulTurquesa = document.getElementById('azulTurquesa')
-let dark = document.getElementById('dark')
+let branco = document.getElementById("branco");
+let amareloEscuro = document.getElementById("amareloEscuro");
+let azulTurquesa = document.getElementById("azulTurquesa");
+let dark = document.getElementById("dark");
 
 branco.onclick = function () {
-  let tema = document.getElementsByTagName('link')[0]
-  tema.setAttribute('href', './css/styleBranco.css')
-}
+  let tema = document.getElementsByTagName("link")[0];
+  tema.setAttribute("href", "./css/styleBranco.css");
+};
 
 amareloEscuro.onclick = function () {
-  let tema = document.getElementsByTagName('link')[0]
-  tema.setAttribute('href', './css/styleAmareloEscuro.css')
-}
+  let tema = document.getElementsByTagName("link")[0];
+  tema.setAttribute("href", "./css/styleAmareloEscuro.css");
+};
 
 azulTurquesa.onclick = function () {
-  let tema = document.getElementsByTagName('link')[0]
-  tema.setAttribute('href', './css/styleAzulTurquesa.css')
-}
+  let tema = document.getElementsByTagName("link")[0];
+  tema.setAttribute("href", "./css/styleAzulTurquesa.css");
+};
 
 dark.onclick = function () {
-  let tema = document.getElementsByTagName('link')[0]
-  tema.setAttribute('href', './css/styleDark.css')
-}
+  let tema = document.getElementsByTagName("link")[0];
+  tema.setAttribute("href", "./css/styleDark.css");
+};

@@ -1,3 +1,9 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
 :root {
   --main-color: #e5e2e2;
   --sub-color: #d1b9b9;
