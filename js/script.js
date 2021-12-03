@@ -7,6 +7,8 @@ let lista = document.querySelector("ul");
 let desc = document.getElementById("desc");
 dataCriacao.value = new Date().toISOString().slice(0, 10);
 
+let dateOptions = { weekday: 'short', year: 'numeric', month: 'short', day: 'numeric' };
+
 // Dados da aplicação
 const estado = {
   tarefas: [],
@@ -20,9 +22,6 @@ function renderizarTarefas() {
   }
   lista.innerHTML = estado.tarefas
     .map((tarefa) => {
-      const dataCriacao = new Date(tarefa.dataCriacao).toLocaleDateString("BR");
-      const dataLimite = new Date(tarefa.dataLimite).toLocaleDateString("BR");
-
       return `
         <li>
           <div class="card" data-id="${tarefa.id}">
@@ -33,8 +32,8 @@ function renderizarTarefas() {
               Tarefa: ${tarefa.titulo}
             </label>
             <p>Descrição: ${tarefa.descricao}</p>
-            <p>Data de Criação: ${dataCriacao}</p>
-            <p>Data Limite: ${dataLimite}</p>
+            <p>Data de Criação: ${tarefa.dataCriacao.toLocaleDateString("PT-BR", dateOptions)}</p>
+            <p>Data Limite: ${tarefa.dataLimite.toLocaleDateString("PT-BR", dateOptions)}</p>
             <button class="remover-tarefa">
               <i class="fas fa-trash"></i>
             </button>
@@ -54,8 +53,8 @@ function adicionarTarefa(event) {
   const novaTarefa = {
     id: Date.now(),
     titulo: tarefa.value,
-    dataCriacao: dataCriacao.value,
-    dataLimite: data.value,
+    dataCriacao: dataCriacao.valueAsDate,
+    dataLimite: data.valueAsDate,
     descricao: desc.value,
     completada: false,
   };
