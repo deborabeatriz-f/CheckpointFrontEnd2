@@ -29,7 +29,7 @@ function renderizarTarefas() {
         tarefa.completada ? "checked" : ""
       } />
             <label for="tarefa${tarefa.id}">
-              Tarefa: ${tarefa.titulo}
+              ${tarefa.titulo}
             </label>
             <p>Descrição: ${tarefa.descricao}</p>
             <p>Data de Criação: ${tarefa.dataCriacao.toLocaleDateString("PT-BR", dateOptions)}</p>

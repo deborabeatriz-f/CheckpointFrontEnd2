@@ -38,7 +38,7 @@ let dark = document.getElementById("dark");
 
 branco.onclick = function () {
   let tema = document.getElementsByTagName("link")[0];
-  tema.setAttribute("href", "./css/todos-api.css");
+  tema.setAttribute("href", "./css/styleBranco.css");
 };
 
 amareloEscuro.onclick = function () {
