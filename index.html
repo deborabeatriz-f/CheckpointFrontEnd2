@@ -18,53 +18,45 @@
         <h1>To do List</h1>
       </div>
       <div>
-        <button>
-          <a href="./todos-api.html" target="blank_">API</a>
-        </button>
-      </div>
-      <div>
         <button id="branco" class="btnTemas"></button>
         <button id="amareloEscuro" class="btnTemas"></button>
         <button id="azulTurquesa" class="btnTemas"></button>
         <button id="dark" class="btnTemas"></button>
       </div>
+      <button class="btn">
+        <a href="./todos-api.html" target="blank_">API</a>
+      </button>
     </header>
 
     <form class="nova-tarefa">
-      <input id="tarefa" type="text" placeholder="Tarefa:" />
-
-      <div class="row" style="display: flex; flex-direction: column">
-        <!--mudança na formatação. Para remover, só tirar os <labels> e as divs-->
-
-        <div
-          class="datas"
-          style="
-            display: flex;
-            flex-direction: column;
-            width: 20%;
-            gap: 15px;
-            margin: 10px 0px;
-          "
-        >
-          <label for="dataCriacao">Data de criação: </label>
-          <input type="date" name="dataCriacao" id="dataCriacao" disabled />
-          <label for="data">Data prevista de término: </label>
-          <input type="date" name="data" id="data" />
-          <label for="desc">Descrição da tarefa</label>
-          <textarea
-            name="desc"
-            id="desc"
-            cols="30"
-            rows="5"
-            placeholder="Insira uma descrição..."
-          ></textarea>
-        </div>
+      <div>
+        <label for="tarefa">Tarefa:</label>
+        <input id="tarefa" type="text" placeholder="Insira o nome da tarefa..." />
+      </div>
+      <!--mudança na formatação. Para remover, só tirar os <labels> e as divs-->
+      <div>
+        <label for="dataCriacao">Data de criação: </label>
+        <input type="date" name="dataCriacao" id="dataCriacao" disabled />
+      </div>
+      <div>
+        <label for="data">Data prevista de término: </label>
+        <input type="date" name="data" id="data" />
+      </div>
+      <div>
+        <label for="desc">Descrição da tarefa</label>
+        <textarea
+              name="desc"
+              id="desc"
+              cols="30"
+              rows="5"
+              placeholder="Insira uma descrição..."
+        ></textarea>
       </div>
 
-      <button type="submit" id="adicionar">Adicionar</button>
+      <button type="submit" class="btn">Adicionar</button>
     </form>
 
-    <ul></ul>
+    <ul class="lista-tarefas"></ul>
 
     <script src="./js/script.js"></script>
   </body>
