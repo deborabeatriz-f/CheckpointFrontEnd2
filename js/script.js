@@ -22,6 +22,8 @@ function renderizarTarefas() {
   }
   lista.innerHTML = estado.tarefas
     .map((tarefa) => {
+      const dataCriacao = new Date(tarefa.dataCriacao);
+      const dataLimite = new Date(tarefa.dataLimite);
       return `
         <li>
           <div class="card" data-id="${tarefa.id}">
