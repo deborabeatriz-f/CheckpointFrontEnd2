@@ -31,7 +31,7 @@ h1 {
 
 a {
   text-decoration: none;
-  color: white;
+  color: rgb(252, 252, 252);
 }
 
 .btnTemas {
@@ -84,6 +84,7 @@ a {
 .nova-tarefa label {
   display: block;
   font-size: 14px;
+  color: #d3cccc;
 }
 
 input,
@@ -92,10 +93,15 @@ textarea {
 }
 
 .btn {
+  border: solid 2px #866b6bd2;
   padding: 5px;
   border-radius: 10px;
-  background-color: rgba(139, 0, 0, 0.562);
-  color: white;
+  background-color: rgba(165, 157, 157, 0.822);
+  color: rgb(252, 252, 252);
+}
+
+#btnHeader {
+  margin-right: 10px;
 }
 
 .lista-tarefas {
@@ -112,6 +118,7 @@ textarea {
 }
 
 .card {
+  color: #d3cccc;
   background-color: var(--main-color);
   box-shadow: 2px 2px 8px rgba(0, 0, 0, 0.2);
   border-radius: 10px;
@@ -119,10 +126,21 @@ textarea {
 }
 
 .todo-list {
+  margin-left: 20px;
   list-style: none;
   display: flex;
   flex-direction: column;
   gap: 32px;
+}
+
+.todo {
+  color: #d3cccc;
+  background-color: rgba(190, 185, 185, 0.438);
+  margin: 10px;
+  border: solid 2px #d3cccc;
+  border-radius: 8px;
+  padding: 10px;
+  max-width: 40%;
 }
 
 .todo-title .completed {

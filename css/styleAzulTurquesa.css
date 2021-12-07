@@ -70,9 +70,10 @@ a {
 }
 
 .nova-tarefa {
+  color: #d3cccc;
   width: 300px;
   padding: 10px 20px;
-  border: rgba(247, 240, 240, 0.562) solid 2px;
+  border: rgba(18, 80, 75, 0.829) solid 2px;
   border-radius: 20px;
   display: flex;
   flex-direction: column;
@@ -92,16 +93,22 @@ textarea {
 }
 
 .btn {
+  border: solid 2px #866b6bd2;
   padding: 5px;
   border-radius: 10px;
-  background-color: rgba(139, 0, 0, 0.562);
+  background-color: rgba(18, 80, 75, 0.733);
   color: white;
 }
 
+#btnHeader {
+  margin-right: 10px;
+}
+
 .lista-tarefas {
+  color: #d3cccc;
   width: 300px;
   padding: 10px 20px;
-  border: rgba(247, 240, 240, 0.562) solid 2px;
+  border: rgba(18, 80, 75, 0.918) solid 2px;
   border-radius: 20px;
   display: flex;
   flex-direction: column;
@@ -119,10 +126,21 @@ textarea {
 }
 
 .todo-list {
+  margin-left: 20px;
   list-style: none;
   display: flex;
   flex-direction: column;
   gap: 32px;
+}
+
+.todo {
+  color: #d3cccc;
+  background-color: rgba(190, 185, 185, 0.438);
+  margin: 10px;
+  border: rgba(18, 80, 75, 0.918) solid 2px;
+  border-radius: 8px;
+  padding: 10px;
+  max-width: 40%;
 }
 
 .todo-title .completed {
