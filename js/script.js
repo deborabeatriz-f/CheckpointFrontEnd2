@@ -83,24 +83,54 @@ function adicionarTarefa(event) {
   estado.tarefas.push(novaTarefa);
   localStorage.setItem('tarefas', JSON.stringify(estado.tarefas));
   renderizarTarefas();
+
+  Swal.fire({
+    position: 'top-end',
+    icon: 'success',
+    title: 'Tarefa adicionada!',
+    showConfirmButton: false,
+    timer: 2000,
+    width: 300
+  });
 }
 
 // Event handler: Clique no botão de excluir
 function removerTarefa(event) {
   if (!event.target.closest('.remover-tarefa')) return;
 
-  const confirmarExclusao = confirm('Deseja mesmo excluir a tarefa?');
-  if (!confirmarExclusao) return;
+  Swal.fire({
+    title: 'Deseja mesmo excluir a tarefa?',
+    text: "Esta ação não poderá ser revertida!",
+    icon: 'warning',
+    showCancelButton: true,
+    confirmButtonColor: '#3085d6',
+    cancelButtonColor: '#d33',
+    confirmButtonText: 'Sim, excluir!',
+    cancelButtonText: 'Cancelar'
+  }).then((result) => {
+    if (result.isConfirmed) {
+      const tarefaId = event.target.closest('.card').dataset.id;
+      const tarefaIndex = estado.tarefas.findIndex((tarefa) => tarefa.id == tarefaId);
 
-  const tarefaId = event.target.closest('.card').dataset.id;
-  const tarefaIndex = estado.tarefas.findIndex((tarefa) => tarefa.id == tarefaId);
+      console.log(tarefaIndex);
 
-  console.log(tarefaIndex);
+      estado.tarefas.splice(tarefaIndex, 1);
+      localStorage.setItem('tarefas', JSON.stringify(estado.tarefas));
 
-  estado.tarefas.splice(tarefaIndex, 1);
-  localStorage.setItem('tarefas', JSON.stringify(estado.tarefas));
+      renderizarTarefas();
 
-  renderizarTarefas();
+      Swal.fire({
+        position: 'top-end',
+        icon: 'success',
+        title: 'Tarefa excluída!',
+        showConfirmButton: false,
+        timer: 2000,
+        width: 300
+      })
+    }
+  })
+
+  
 }
 
 // Event handler: Marcar / Desmarcar tarefa
